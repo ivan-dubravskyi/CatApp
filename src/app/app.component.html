@@ -4,14 +4,15 @@
                  (filters)="filters.next($event)">
 </app-filter-form>
 
-<mat-grid-list [cols]="(isMobile$ | async) ? 2 : 3"
-               rowHeight="2:1">
-  <mat-grid-tile *ngFor="let cat of cats$ | async">
-    <app-cat-card style="width: 100%; height: 100%"
-                  [cat]="cat">
-    </app-cat-card>
-  </mat-grid-tile>
-</mat-grid-list>
+<div style="overflow: auto; height: calc(100% - 162px)">
+  <mat-grid-list [cols]="(isMobile$ | async) ? 2 : 3"
+                 rowHeight="2:1">
+    <mat-grid-tile *ngFor="let cat of cats$ | async">
+      <app-cat-card style="width: 100%; height: 100%"
+                    [cat]="cat">
+      </app-cat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
 
 <app-full-screen-loader *ngIf="loader.show$ | async"></app-full-screen-loader>
-
