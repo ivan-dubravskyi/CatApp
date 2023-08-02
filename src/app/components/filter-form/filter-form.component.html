@@ -1,0 +1,27 @@
+<form [formGroup]="filtersFormGroup"
+      class="filters-form">
+
+  <mat-form-field style="width: 49%;"
+                  appearance="outline">
+    <mat-label>Breed</mat-label>
+    <mat-select formControlName="breedId">
+      <mat-option [value]="''">All</mat-option>
+      <mat-option *ngFor="let breed of breeds"
+                  [value]="breed.id">
+        {{breed.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field style="width: 49%"
+                  appearance="outline">
+    <mat-label>Limit</mat-label>
+    <input matInput
+           type="number"
+           name="limit"
+           formControlName="limit"
+           min="1"
+           max="100">
+  </mat-form-field>
+
+</form>

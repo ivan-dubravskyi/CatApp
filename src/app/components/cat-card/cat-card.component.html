@@ -1,0 +1,10 @@
+<mat-card class="image-container">
+  <img [ngSrc]="cat.url"
+       [alt]="cat.id"
+       (load)="imgLoading = false"
+       (error)="imgLoading = false"
+       fill>
+  <div *ngIf="imgLoading"
+       class="skeleton-box">
+  </div>
+</mat-card>
