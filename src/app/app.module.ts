@@ -8,13 +8,14 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {HttpClientModule} from '@angular/common/http';
 import { CatCardComponent } from './components/cat-card/cat-card.component';
 import {MatGridListModule} from "@angular/material/grid-list";
-import {MatCardModule} from "@angular/material/card";
 import { FilterFormComponent } from './components/filter-form/filter-form.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
 import {NgOptimizedImage} from "@angular/common";
 import {FullScreenLoaderModule} from "./shared/full-screen-loader/full-screen-loader.module";
+import {SkeletonModule} from "./shared/skeleton/skeleton.module";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -29,12 +30,13 @@ import {FullScreenLoaderModule} from "./shared/full-screen-loader/full-screen-lo
     HttpClientModule,
     MatToolbarModule,
     MatGridListModule,
-    MatCardModule,
     ReactiveFormsModule,
     MatSelectModule,
     MatInputModule,
     NgOptimizedImage,
     FullScreenLoaderModule,
+    SkeletonModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

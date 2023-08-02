@@ -1,15 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {CatApiService} from "./services/cat-api.service";
-import {BehaviorSubject, map, switchMap} from "rxjs";
+import {BehaviorSubject, map, switchMap, tap} from "rxjs";
 import {Filters} from "./models";
 import {Loader} from "./shared/utils/loader";
+import {MediaObserver} from '@angular/flex-layout';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   public loader = new Loader();
 
   public filters = new BehaviorSubject<Filters>({
@@ -18,20 +19,17 @@ export class AppComponent implements OnInit {
   });
 
   public cats$ = this.filters.asObservable().pipe(
-    switchMap((filters) => {
-      this.loader.start();
-      return this.catApiService.getCatImage(filters.limit, filters.breedId);
-    }),
-    map((cats) => {
-      this.loader.stop();
-      return cats;
-    })
+    tap(() => this.loader.start()),
+    switchMap((filters) => this.catApiService.getCatImages(filters.limit, filters.breedId)),
+    tap(() => this.loader.stop()),
   )
   public breeds$ = this.catApiService.getAllBreeds();
 
-  constructor(private catApiService: CatApiService) {
-  }
+  public isMobile$ = this.media
+    .asObservable()
+    .pipe(map(() => this.media.isActive('lt-sm')));
 
-  ngOnInit(): void {
-  }
+  constructor(private catApiService: CatApiService,
+              private media: MediaObserver,) {}
+
 }

@@ -11,11 +11,9 @@ import {environment} from "../../environments/environment";
 export class CatApiService {
   private origin = environment.api_origin;
 
-  constructor(
-    private http: HttpClient,
-  ) { }
+  constructor(private http: HttpClient,) {}
 
-  getCatImage(limit: number, breed_ids: string): Observable<Cat[]> {
+  getCatImages(limit: number, breed_ids: string): Observable<Cat[]> {
     const params = {
       api_key: environment.api_key,
       limit,

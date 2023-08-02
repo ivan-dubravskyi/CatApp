@@ -4,7 +4,8 @@
                  (filters)="filters.next($event)">
 </app-filter-form>
 
-<mat-grid-list cols="3" rowHeight="2:1">
+<mat-grid-list [cols]="(isMobile$ | async) ? 2 : 3"
+               rowHeight="2:1">
   <mat-grid-tile *ngFor="let cat of cats$ | async">
     <app-cat-card style="width: 100%; height: 100%"
                   [cat]="cat">
